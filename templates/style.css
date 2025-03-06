@@ -1,0 +1,21 @@
+body {
+    background-color: #f8f9fa;
+    font-family: 'Arial', sans-serif;
+}
+
+h1 {
+    color: #007bff;
+}
+
+.card {
+    border-radius: 10px;
+    transition: transform 0.2s;
+}
+
+.card:hover {
+    transform: scale(1.05);
+}
+
+.btn {
+    border-radius: 5px;
+}

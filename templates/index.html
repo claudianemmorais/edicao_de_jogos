@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Jogos</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1>Lista de Jogos</h1>
+        <a href="/jogo" class="btn btn-primary mb-3">Adicionar Partida</a>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Data da Partida</th>
+                    <th>Time 1</th>
+                    <th>Gols Time 1</th>
+                    <th>Time 2</th>
+                    <th>Gols Time 2</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for jogo in jogos %}
+                <tr>
+                    <td>{{ jogo.data_partida.strftime('%d/%m/%Y') }}</td>
+                    <td>{{ jogo.time1 }}</td>
+                    <td>{{ jogo.gols_time1 }}</td>
+                    <td>{{ jogo.time2 }}</td>
+                    <td>{{ jogo.gols_time2 }}</td>
+                    <td>
+                        <a href="/jogo/{{ jogo.id }}" class="btn btn-warning">Editar</a>
+                        <a href="/delete/{{ jogo.id }}" class="btn btn-danger">Excluir</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>        
+    </div>
+</body>
+</html>

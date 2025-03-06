@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adicionar/Editar Jogo</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1>{{ 'Editar' if jogo.id else 'Adicionar' }} Partida</h1>
+        <form method="POST">
+            <div class="mb-3">
+                <label for="data_partida" class="form-label">Data da Partida</label>
+                <input type="date" class="form-control" id="data_partida" name="data_partida" 
+                value="{{ jogo.data_partida if jogo.id else '' }}" required>
+            </div>
+            
+            <div class="mb-3">
+                <label for="time1" class="form-label">Time 1</label>
+                <input type="text" class="form-control" id="time1" name="time1" 
+                value="{{ jogo.time1 if jogo.id else '' }}" required>
+            </div>
+        
+            <div class="mb-3">
+                <label for="time2" class="form-label">Time 2</label>
+                <input type="text" class="form-control" id="time2" name="time2" 
+                value="{{ jogo.time2 if jogo.id else '' }}" required>
+                <div id="error-message" style="color: red; display: none;"></div>
+            </div>
+        
+            <div class="mb-3">
+                <label for="gols_time1" class="form-label">Gols Time 1</label>
+                <input type="number" class="form-control" id="gols_time1" name="gols_time1" 
+                value="{{ jogo.gols_time1 if jogo.id else '' }}" required>
+            </div>
+        
+            <div class="mb-3">
+                <label for="gols_time2" class="form-label">Gols Time 2</label>
+                <input type="number" class="form-control" id="gols_time2" name="gols_time2" 
+                value="{{ jogo.gols_time2 if jogo.id else '' }}" required>
+            </div>
+        
+            <button type="submit" class="btn btn-success">Salvar</button>
+            <a href="/" class="btn btn-secondary">Cancelar</a>
+        </form>        
+    </div>
+</body>
+
+             <script>
+                    document.addEventListener("DOMContentLoaded", function () {
+                        const form = document.querySelector("form");
+                        const time1Input = document.getElementById("time1");
+                        const time2Input = document.getElementById("time2");
+                        const errorDiv = document.createElement("div");
+                        errorDiv.style.color = "red";
+                        errorDiv.style.display = "none"; // Inicialmente escondido
+                        time2Input.parentNode.appendChild(errorDiv);
+
+                    form.addEventListener("submit", function (event) {
+                        if (time1Input.value.trim().toLowerCase() === time2Input.value.trim().toLowerCase()) {
+                            event.preventDefault(); // Impede o envio do formulário
+                            errorDiv.textContent = "Os times não podem ter nomes iguais!";
+                            errorDiv.style.display = "block";
+                        } else {
+                            errorDiv.style.display = "none";
+                        }
+                    });
+                });
+             </script>
+</html>
